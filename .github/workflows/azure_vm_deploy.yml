@@ -13,7 +13,7 @@ jobs:
       - name: checkout repo 
         uses: actions/checkout@v1
 
-      - name: look for ps1 file #looks for a powershell script, if it cannot find it the action fails
+      - name: look for ps1 file #looks for a powershell script, for better visibility when running the action
         run: |
           ls '${{ env.OUTPUT_PATH }}'
       - name: Provision vm in azure #running the script with the parameters coming from github secrets
