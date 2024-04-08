@@ -14,7 +14,7 @@ param(
 # This logs into Azure with a Service Principal Account
 Write-Output "Logging in to Azure with the secret password"
 az login `
-    --username $usernameSecret
+    --username $usernameSecret `
     --password $passwordSecret `
     --tenant $tenantSecret
 Write-Output "Done"
