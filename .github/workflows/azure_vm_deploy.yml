@@ -1,0 +1,24 @@
+name: Deploy Azure VM
+
+env:
+  OUTPUT_PATH: ${{ github.workspace }} #this is used to locate the script
+#I set the trigger to workflow_dispatch so it is the easiest to test manually, but I could've set it to push
+on:
+  workflow_dispatch:
+
+jobs:
+  DeployVM:
+    runs-on: windows-latest
+    steps:
+      - name: checkout repo 
+        uses: actions/checkout@v1
+
+      - name: look for ps1 file #looks for a powershell script, if it cannot find it the action fails
+        run: |
+          ls '${{ env.OUTPUT_PATH }}'
+      - name: Provision vm in azure #running the script with the parameters coming from github secrets
+        run: >
+          powershell -command "& '${{ env.OUTPUT_PATH }}\vmscript.ps1'"
+          -passwordSecret ${{ secrets.AZURE_PASSWORD }}
+          -usernameSecret ${{ secrets.AZURE_USERNAME }}
+          -tenantSecret ${{ secrets.AZURE_TENANT }}
