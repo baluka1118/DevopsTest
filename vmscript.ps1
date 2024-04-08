@@ -2,10 +2,10 @@
 param(
     [Parameter(Mandatory = $True)]
     [string]
-    $passwordSecret
+    $passwordSecret,
     [Parameter(Mandatory = $True)]
     [string]
-    $usernameSecret
+    $usernameSecret,
     [Parameter(Mandatory = $True)]
     [string]
     $tenantSecret
